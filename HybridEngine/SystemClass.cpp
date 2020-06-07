@@ -1,4 +1,5 @@
 #include "SystemClass.h"
+#include <iostream>
 
 SystemClass::SystemClass() {
 	m_OpenGL = 0;
@@ -125,6 +126,8 @@ bool SystemClass::initialize()
 	{
 		return false;
 	}
+
+	std::cout << m_OpenGL->m_videoCardDescription << std::endl;
 
 	return true;
 }

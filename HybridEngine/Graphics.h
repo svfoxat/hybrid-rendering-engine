@@ -1,6 +1,9 @@
 #pragma once
 
 #include "OpenGLRenderer.h"
+#include "Camera.h"
+#include "Model.h"
+#include "ColorShader.h"
 #include "windows.h"
 
 
@@ -22,5 +25,8 @@ public:
 private:
 	bool render();
 	OpenGLRenderer* m_OpenGL;
+	Camera* m_Camera;
+	Model* m_Model;
+	ColorShader* m_ColorShader;
 };
 

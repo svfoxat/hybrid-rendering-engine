@@ -87,6 +87,7 @@ public:
 	void GetWorldMatrix(float*);
 	void GetProjectionMatrix(float*);
 	void GetVideoCardInfo(char*);
+	char m_videoCardDescription[128];
 
 	void BuildIdentityMatrix(float*);
 	void BuildPerspectiveFovLHMatrix(float*, float, float, float, float);
@@ -140,7 +141,6 @@ private:
 
 	float m_worldMatrix[16];
 	float m_projectionMatrix[16];
-	char m_videoCardDescription[128];
 
 private:
 };
