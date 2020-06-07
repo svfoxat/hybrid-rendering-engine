@@ -7,7 +7,7 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
 add_subdirectory(ThirdParty/glfw)
-add_executable(HybridEngine HybridEngine/main.cpp)
+add_executable(HybridEngine src/main.cpp)
 
 target_link_libraries(HybridEngine glfw)
 
