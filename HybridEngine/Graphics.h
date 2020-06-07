@@ -21,5 +21,6 @@ public:
 
 private:
 	bool render();
+	OpenGLRenderer* m_OpenGL;
 };
 

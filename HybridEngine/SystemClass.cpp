@@ -1,7 +1,9 @@
 #include "SystemClass.h"
 
-SystemClass::SystemClass()
-{
+SystemClass::SystemClass() {
+	m_OpenGL = 0;
+	m_IO = 0;
+	m_Graphics = 0;
 }
 
 SystemClass::SystemClass(const SystemClass &)
@@ -147,6 +149,7 @@ void SystemClass::shutdown()
 	// Release the OpenGL object.
 	if (m_OpenGL)
 	{
+		m_OpenGL->Shutdown(m_hwnd);
 		delete m_OpenGL;
 		m_OpenGL = 0;
 	}
@@ -190,6 +193,26 @@ bool SystemClass::initWindows(OpenGLRenderer* OpenGL, int& screenWidth, int& scr
 	// Register the window class.
 	RegisterClassEx(&wc);
 
+	// Create a temporary window for the OpenGL extension setup.
+	m_hwnd = CreateWindowEx(WS_EX_APPWINDOW, m_applicationName, m_applicationName, WS_POPUP,
+		0, 0, 640, 480, NULL, NULL, m_hinstance, NULL);
+	if (m_hwnd == NULL)
+	{
+		return false;
+	}
+
+	// Don't show the window.
+	ShowWindow(m_hwnd, SW_HIDE);
+
+	// Initialize a temporary OpenGL window and load the OpenGL extensions.
+	auto result = m_OpenGL->InitExtensions(m_hwnd);
+	if (!result)
+	{
+		MessageBox(m_hwnd, L"Could not initialize the OpenGL extensions.", L"Error", MB_OK);
+		return false;
+	}
+
+
 	// Determine the resolution of the clients desktop screen.
 	screenWidth = GetSystemMetrics(SM_CXSCREEN);
 	screenHeight = GetSystemMetrics(SM_CYSCREEN);
@@ -227,6 +250,14 @@ bool SystemClass::initWindows(OpenGLRenderer* OpenGL, int& screenWidth, int& scr
 		posX, posY, screenWidth, screenHeight, NULL, NULL, m_hinstance, NULL);
 	if (m_hwnd == NULL)
 	{
+		return false;
+	}
+
+	// Initialize OpenGL now that the window has been created.
+	result = m_OpenGL->InitOpenGL(m_hwnd, screenWidth, screenHeight, SCREEN_DEPTH, SCREEN_NEAR, VSYNC_ENABLED);
+	if (!result)
+	{
+		MessageBox(m_hwnd, L"Could not initialize OpenGL, check if video card supports OpenGL 4.0.", L"Error", MB_OK);
 		return false;
 	}
 
