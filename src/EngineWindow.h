@@ -6,6 +6,7 @@
 
 #include "stdio.h"
 #include <GLFW/glfw3.h>
+#include "Shader.h"
 
 class EngineWindow {
 public:

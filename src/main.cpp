@@ -10,7 +10,7 @@ int main() {
         return -1;
     }
 
-    EngineWindow* window = new EngineWindow(640, 480, "Hello");
+    auto* window = new EngineWindow(640, 480, (char *) L"Hello");
     window->run();
 
     return 0;

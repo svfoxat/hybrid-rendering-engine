@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.10)
 project(HybridEngine)
 
 #Source Files
 set (SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set (LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty")
-add_executable(HybridEngine src/main.cpp src/EngineWindow.cpp src/EngineWindow.h)
+add_executable(HybridEngine src/main.cpp src/EngineWindow.cpp src/EngineWindow.h src/Shader.cpp src/Shader.h)
 target_include_directories(${PROJECT_NAME} PRIVATE "${SRC_DIR}")
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
 
