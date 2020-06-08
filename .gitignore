@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 
 cmake-build-debug
+ThirdParty

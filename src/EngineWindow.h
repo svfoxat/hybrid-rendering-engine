@@ -4,9 +4,10 @@
 #ifndef HYBRIDENGINE_ENGINEWINDOW_H
 #define HYBRIDENGINE_ENGINEWINDOW_H
 
-#include "stdio.h"
+#include <iostream>
 #include <GLFW/glfw3.h>
 #include "Shader.h"
+#include "Scene.h"
 
 class EngineWindow {
 public:

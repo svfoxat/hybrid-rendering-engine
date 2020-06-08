@@ -4,7 +4,7 @@ project(HybridEngine)
 #Source Files
 set (SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set (LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty")
-add_executable(HybridEngine src/main.cpp src/EngineWindow.cpp src/EngineWindow.h src/Shader.cpp src/Shader.h)
+add_executable(HybridEngine src/main.cpp src/EngineWindow.cpp src/EngineWindow.h src/Shader.cpp src/Shader.h src/Scene.cpp src/Scene.h)
 target_include_directories(${PROJECT_NAME} PRIVATE "${SRC_DIR}")
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
 
@@ -26,3 +26,9 @@ add_library("glad" "${GLAD_DIR}/src/glad.c")
 target_include_directories("glad" PRIVATE "${GLAD_DIR}/include")
 target_include_directories(${PROJECT_NAME} PRIVATE "${GLAD_DIR}/include")
 target_link_libraries(${PROJECT_NAME} "glad" "${CMAKE_DL_LIBS}")
+
+#LM
+set(GLM_DIR "${LIB_DIR}/glm")
+add_subdirectory("${GLM_DIR}")
+target_link_libraries(${PROJECT_NAME} "glm" "${GLFW_LIBRARIES}")
+target_include_directories(${PROJECT_NAME} PRIVATE "${GLM_DIR}/include")

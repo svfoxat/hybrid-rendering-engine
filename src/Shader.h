@@ -6,6 +6,7 @@
 #define HYBRIDENGINE_SHADER_H
 
 #include "glad/glad.h"
+#include "linmath.h"
 #include <string>
 #include <fstream>
 #include <sstream>
